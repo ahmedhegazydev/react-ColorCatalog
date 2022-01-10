@@ -1,8 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text, View
+  ,
+  Button
+} from 'react-native';
 import { ActivityIndicator } from 'react-native';
 import { ProgressViewIOS } from 'react-native';
-import {ProgressView} from "@react-native-community/progress-view";
+import { ProgressView } from "@react-native-community/progress-view";
 // import {ProgressBarAndroid} from 'react-native'
 
 
@@ -11,8 +16,10 @@ export default function App() {
 
 
   console.log("");
+  const onBtnClickMePressed = () => {
+   console.log ("on button clicking");
+  }
 
-  
   return (
     <View style={styles.container}>
       <Text style={styles.ready}>Ready....</Text>
@@ -34,6 +41,12 @@ export default function App() {
         trackTintColor="blue"
         progress={0.7}
       /> */}
+
+
+      <Button
+        title="CLick Me"
+        onPress={onBtnClickMePressed}
+      />
 
 
 
