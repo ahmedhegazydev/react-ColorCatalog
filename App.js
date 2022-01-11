@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
-  Text, View,
+  Text, View, Image, 
   Alert, Button,
   Platform, Dimensions
 } from 'react-native';
@@ -10,6 +10,8 @@ import { ProgressViewIOS } from 'react-native';
 import { ProgressView } from "@react-native-community/progress-view";
 import { ProgressBarAndroid } from 'react-native'
 
+import imgIcon from "./assets/icon.png"
+import imgSplash from "./assets/splash.png"
 
 
 export default function App() {
@@ -46,7 +48,11 @@ export default function App() {
       }
 
       {Platform.OS === "android" &&
-        <ActivityIndicator size="large" color="#334455" />
+        <ProgressBarAndroid
+          styleAttr="Horizontal"
+          indeterminate={false}
+          progress={0.8}
+        />
       }
 
       {/* <ProgressView
@@ -65,9 +71,10 @@ export default function App() {
       <Text style={{ paddingBottom: 20, }}>Height: {height}</Text>
 
 
-      <Text>Platform: {Platform.OS}</Text>
+      <Text style={styles.platform}>Platform: {Platform.OS}</Text>
 
-
+      <Image style={styles.image} source={imgIcon} />
+      <Image style={styles.image} source={imgSplash} />
 
     </View>
   );
@@ -76,19 +83,45 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+
     flex: 1,
+
+    flexDirection: "column",
+    // flexDirection: "row", 
+
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+
+
+    // alignItems: "flex-start",
+    // alignItems: "flex-end",
+    alignItems: "center",
+
+
+    justifyContent: "center",
+    // justifyContent: "space-between",
+
+
   },
 
   ready: {
     fontSize: 30,
   },
 
+  platform: {
+    // flex: 1,
+    // alignSelf: "flex-end",
+  },
+
   progress: {
     width: 200,
   },
 
+  image: {
+    flex: 1,
+    borderRadius: 20, 
+    width: 200, 
+    backgroundColor: "red", 
+    
+  }
 
 });
