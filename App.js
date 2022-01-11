@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
-  Text, View, Image, 
+  Text, View, Image,
   Alert, Button,
-  Platform, Dimensions
+  Platform, Dimensions, 
+  TouchableHighlight, 
 } from 'react-native';
 import { ActivityIndicator } from 'react-native';
 import { ProgressViewIOS } from 'react-native';
@@ -12,6 +13,7 @@ import { ProgressBarAndroid } from 'react-native'
 
 import imgIcon from "./assets/icon.png"
 import imgSplash from "./assets/splash.png"
+import { useState } from 'react';
 
 
 export default function App() {
@@ -22,8 +24,9 @@ export default function App() {
   const onBtnClickMePressed = () => {
     console.log(`${new Date().toLocaleDateString()} on button clicking`);
     Alert.alert(`${new Date().toLocaleTimeString} when clicked on btn click me`);
-
   }
+  const [backgroundColor, setBackgroundColor] = useState("blue");
+
 
   return (
     <View style={styles.container}>
@@ -73,8 +76,25 @@ export default function App() {
 
       <Text style={styles.platform}>Platform: {Platform.OS}</Text>
 
-      <Image style={styles.image} source={imgIcon} />
-      <Image style={styles.image} source={imgSplash} />
+      {/* <Image style={styles.image} source={imgIcon} /> */}
+      {/* <Image style={styles.image} source={imgSplash} /> */}
+
+
+      <TouchableHighlight
+        style={[styles.submit, {backgroundColor}]}
+        onPress={() => setBackgroundColor("red")}
+        underlayColor='#fff'>
+        <Text style={styles.submitText}>Red</Text>
+      </TouchableHighlight>
+
+
+      <TouchableHighlight
+        style={[styles.submit, {backgroundColor}]}
+        onPress={() => setBackgroundColor("green")}
+        underlayColor='#fff'>
+        <Text style={styles.submitText}>Green</Text>
+      </TouchableHighlight>
+
 
     </View>
   );
@@ -103,6 +123,26 @@ const styles = StyleSheet.create({
 
   },
 
+  submit: {
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    backgroundColor: 'red',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#fff',
+  },
+  submitText: {
+    color: '#fff',
+    textAlign: 'center',
+    paddingRight: 50, 
+    paddingLeft: 50, 
+
+
+  },
+
   ready: {
     fontSize: 30,
   },
@@ -118,10 +158,10 @@ const styles = StyleSheet.create({
 
   image: {
     flex: 1,
-    borderRadius: 20, 
-    width: 200, 
-    backgroundColor: "red", 
-    
+    borderRadius: 20,
+    width: 200,
+    backgroundColor: "red",
+
   }
 
 });
